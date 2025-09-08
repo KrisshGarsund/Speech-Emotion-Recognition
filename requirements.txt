@@ -1,0 +1,25 @@
+# Web framework
+Flask==3.0.3
+flask-cors==4.0.0
+
+# Audio processing
+librosa==0.10.2.post1
+pyaudio==0.2.14
+soundfile==0.12.1
+scipy==1.14.1
+numpy==2.1.1
+
+# Machine learning / Deep learning
+tensorflow==2.17.0
+torch==2.4.1
+torchaudio==2.4.1
+scikit-learn==1.5.2
+
+# Data handling & visualization (optional, for debugging/training)
+pandas==2.2.2
+matplotlib==3.9.2
+seaborn==0.13.2
+jupyter==1.1.1
+
+# Model saving/loading
+joblib==1.4.2
