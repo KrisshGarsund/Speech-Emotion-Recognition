@@ -1,0 +1,164 @@
+{
+  "model_info": {
+    "feature_type": "MFCC Only",
+    "model_parameters": {
+      "conv1_filters": 32,
+      "conv1_kernel": 7,
+      "conv2_filters": 256,
+      "conv2_kernel": 3,
+      "lstm1_units": 64,
+      "lstm2_units": 32,
+      "dense_units": 64,
+      "dropout_conv": 0.1,
+      "dropout_lstm": 0.2,
+      "dropout_dense": 0.5,
+      "learning_rate": 0.001,
+      "batch_size": 16,
+      "pool_size": 3
+    },
+    "training_epochs": 90,
+    "timestamp": "20250918_213724"
+  },
+  "performance_metrics": {
+    "test_accuracy": 0.78125,
+    "total_samples": 288,
+    "correct_predictions": 225,
+    "wrong_predictions": 63
+  },
+  "per_class_metrics": {
+    "Angry": {
+      "precision": 0.7857142857142857,
+      "recall": 0.868421052631579,
+      "f1_score": 0.825,
+      "support": 38
+    },
+    "Calm": {
+      "precision": 0.8292682926829268,
+      "recall": 0.8947368421052632,
+      "f1_score": 0.8607594936708861,
+      "support": 38
+    },
+    "Disgust": {
+      "precision": 0.9310344827586207,
+      "recall": 0.7105263157894737,
+      "f1_score": 0.8059701492537313,
+      "support": 38
+    },
+    "Fearful": {
+      "precision": 0.6909090909090909,
+      "recall": 0.9743589743589743,
+      "f1_score": 0.8085106382978723,
+      "support": 39
+    },
+    "Happy": {
+      "precision": 0.6666666666666666,
+      "recall": 0.6153846153846154,
+      "f1_score": 0.64,
+      "support": 39
+    },
+    "Neutral": {
+      "precision": 0.9090909090909091,
+      "recall": 0.5263157894736842,
+      "f1_score": 0.6666666666666666,
+      "support": 19
+    },
+    "Sad": {
+      "precision": 0.7222222222222222,
+      "recall": 0.6842105263157895,
+      "f1_score": 0.7027027027027027,
+      "support": 38
+    },
+    "Surprised": {
+      "precision": 0.868421052631579,
+      "recall": 0.8461538461538461,
+      "f1_score": 0.8571428571428571,
+      "support": 39
+    }
+  },
+  "confusion_matrix": [
+    [
+      33,
+      0,
+      0,
+      1,
+      3,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      34,
+      1,
+      0,
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      5,
+      2,
+      27,
+      0,
+      0,
+      0,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      38,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      7,
+      24,
+      1,
+      1,
+      4
+    ],
+    [
+      1,
+      4,
+      0,
+      0,
+      2,
+      10,
+      2,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      7,
+      4,
+      0,
+      26,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      2,
+      2,
+      0,
+      0,
+      33
+    ]
+  ],
+  "top_confusions": [
+    {
+      "True": "Happy",
+      "Predicted": "Fearful",
+      "Count": 

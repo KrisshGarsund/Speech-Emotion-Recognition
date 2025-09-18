@@ -1,0 +1,335 @@
+{
+  "best_params": {
+    "conv1_filters": 32,
+    "conv1_kernel": 7,
+    "conv2_filters": 256,
+    "conv2_kernel": 3,
+    "lstm1_units": 64,
+    "lstm2_units": 32,
+    "dense_units": 64,
+    "dropout_conv": 0.1,
+    "dropout_lstm": 0.2,
+    "dropout_dense": 0.5,
+    "learning_rate": 0.001,
+    "batch_size": 16,
+    "pool_size": 3
+  },
+  "best_accuracy": 0.7326388955116272,
+  "all_results": [
+    {
+      "trial": 1,
+      "params": {
+        "conv1_filters": 16,
+        "conv1_kernel": 3,
+        "conv2_filters": 128,
+        "conv2_kernel": 3,
+        "lstm1_units": 32,
+        "lstm2_units": 16,
+        "dense_units": 32,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.4,
+        "dropout_dense": 0.5,
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.265625,
+      "val_accuracy": 0.2986111044883728,
+      "epochs_trained": 21
+    },
+    {
+      "trial": 2,
+      "params": {
+        "conv1_filters": 64,
+        "conv1_kernel": 5,
+        "conv2_filters": 64,
+        "conv2_kernel": 3,
+        "lstm1_units": 64,
+        "lstm2_units": 16,
+        "dense_units": 32,
+        "dropout_conv": 0.2,
+        "dropout_lstm": 0.2,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.78125,
+      "val_accuracy": 0.6631944179534912,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 3,
+      "params": {
+        "conv1_filters": 32,
+        "conv1_kernel": 3,
+        "conv2_filters": 256,
+        "conv2_kernel": 5,
+        "lstm1_units": 64,
+        "lstm2_units": 64,
+        "dense_units": 128,
+        "dropout_conv": 0.1,
+        "dropout_lstm": 0.3,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.7065972089767456,
+      "val_accuracy": 0.6388888955116272,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 4,
+      "params": {
+        "conv1_filters": 16,
+        "conv1_kernel": 5,
+        "conv2_filters": 256,
+        "conv2_kernel": 5,
+        "lstm1_units": 32,
+        "lstm2_units": 16,
+        "dense_units": 128,
+        "dropout_conv": 0.1,
+        "dropout_lstm": 0.4,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.7560763955116272,
+      "val_accuracy": 0.6319444179534912,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 5,
+      "params": {
+        "conv1_filters": 128,
+        "conv1_kernel": 7,
+        "conv2_filters": 32,
+        "conv2_kernel": 5,
+        "lstm1_units": 64,
+        "lstm2_units": 64,
+        "dense_units": 256,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.3,
+        "dropout_dense": 0.5,
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "pool_size": 4
+      },
+      "train_accuracy": 0.6328125,
+      "val_accuracy": 0.59375,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 6,
+      "params": {
+        "conv1_filters": 64,
+        "conv1_kernel": 7,
+        "conv2_filters": 64,
+        "conv2_kernel": 3,
+        "lstm1_units": 64,
+        "lstm2_units": 16,
+        "dense_units": 32,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.3,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.0001,
+        "batch_size": 8,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.4904513955116272,
+      "val_accuracy": 0.5138888955116272,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 7,
+      "params": {
+        "conv1_filters": 128,
+        "conv1_kernel": 3,
+        "conv2_filters": 64,
+        "conv2_kernel": 7,
+        "lstm1_units": 64,
+        "lstm2_units": 32,
+        "dense_units": 128,
+        "dropout_conv": 0.2,
+        "dropout_lstm": 0.4,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.0001,
+        "batch_size": 8,
+        "pool_size": 2
+      },
+      "train_accuracy": 0.6545138955116272,
+      "val_accuracy": 0.6145833134651184,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 8,
+      "params": {
+        "conv1_filters": 32,
+        "conv1_kernel": 7,
+        "conv2_filters": 256,
+        "conv2_kernel": 3,
+        "lstm1_units": 64,
+        "lstm2_units": 32,
+        "dense_units": 64,
+        "dropout_conv": 0.1,
+        "dropout_lstm": 0.2,
+        "dropout_dense": 0.5,
+        "learning_rate": 0.001,
+        "batch_size": 16,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.9140625,
+      "val_accuracy": 0.7326388955116272,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 9,
+      "params": {
+        "conv1_filters": 16,
+        "conv1_kernel": 5,
+        "conv2_filters": 32,
+        "conv2_kernel": 3,
+        "lstm1_units": 128,
+        "lstm2_units": 64,
+        "dense_units": 32,
+        "dropout_conv": 0.1,
+        "dropout_lstm": 0.2,
+        "dropout_dense": 0.3,
+        "learning_rate": 0.001,
+        "batch_size": 16,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.8645833134651184,
+      "val_accuracy": 0.6701388955116272,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 10,
+      "params": {
+        "conv1_filters": 16,
+        "conv1_kernel": 7,
+        "conv2_filters": 32,
+        "conv2_kernel": 7,
+        "lstm1_units": 64,
+        "lstm2_units": 16,
+        "dense_units": 32,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.3,
+        "dropout_dense": 0.5,
+        "learning_rate": 0.01,
+        "batch_size": 8,
+        "pool_size": 2
+      },
+      "train_accuracy": 0.2864583432674408,
+      "val_accuracy": 0.3680555522441864,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 11,
+      "params": {
+        "conv1_filters": 32,
+        "conv1_kernel": 7,
+        "conv2_filters": 128,
+        "conv2_kernel": 3,
+        "lstm1_units": 64,
+        "lstm2_units": 32,
+        "dense_units": 64,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.4,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.001,
+        "batch_size": 16,
+        "pool_size": 2
+      },
+      "train_accuracy": 0.7170138955116272,
+      "val_accuracy": 0.6805555820465088,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 12,
+      "params": {
+        "conv1_filters": 16,
+        "conv1_kernel": 7,
+        "conv2_filters": 128,
+        "conv2_kernel": 7,
+        "lstm1_units": 32,
+        "lstm2_units": 16,
+        "dense_units": 128,
+        "dropout_conv": 0.1,
+        "dropout_lstm": 0.2,
+        "dropout_dense": 0.5,
+        "learning_rate": 0.01,
+        "batch_size": 8,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.3072916567325592,
+      "val_accuracy": 0.3784722089767456,
+      "epochs_trained": 22
+    },
+    {
+      "trial": 13,
+      "params": {
+        "conv1_filters": 64,
+        "conv1_kernel": 3,
+        "conv2_filters": 256,
+        "conv2_kernel": 7,
+        "lstm1_units": 128,
+        "lstm2_units": 32,
+        "dense_units": 32,
+        "dropout_conv": 0.1,
+        "dropout_lstm": 0.2,
+        "dropout_dense": 0.5,
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "pool_size": 2
+      },
+      "train_accuracy": 0.5954861044883728,
+      "val_accuracy": 0.65625,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 14,
+      "params": {
+        "conv1_filters": 32,
+        "conv1_kernel": 3,
+        "conv2_filters": 64,
+        "conv2_kernel": 3,
+        "lstm1_units": 64,
+        "lstm2_units": 16,
+        "dense_units": 64,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.3,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.01,
+        "batch_size": 32,
+        "pool_size": 2
+      },
+      "train_accuracy": 0.3975694477558136,
+      "val_accuracy": 0.4305555522441864,
+      "epochs_trained": 30
+    },
+    {
+      "trial": 15,
+      "params": {
+        "conv1_filters": 64,
+        "conv1_kernel": 3,
+        "conv2_filters": 128,
+        "conv2_kernel": 5,
+        "lstm1_units": 128,
+        "lstm2_units": 64,
+        "dense_units": 256,
+        "dropout_conv": 0.3,
+        "dropout_lstm": 0.4,
+        "dropout_dense": 0.4,
+        "learning_rate": 0.0001,
+        "batch_size": 8,
+        "pool_size": 3
+      },
+      "train_accuracy": 0.6597222089767456,
+      "val_accuracy": 0.6319444179534912,
+      "epochs_trained": 30
+    }
+  ]
+}

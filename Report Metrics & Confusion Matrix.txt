@@ -1,0 +1,39 @@
+OVERALL PERFORMANCE:
+Test Accuracy: 78.12%
+Total Samples: 288
+Correct Predictions: 225
+Wrong Predictions: 63
+
+MACRO AVERAGES:
+Macro F1-Score: 0.771
+
+PER-CLASS PERFORMANCE SUMMARY:
+Emotion      F1-Score   Support  Performance
+--------------------------------------------------
+Angry        0.825      38       Strong
+Calm         0.861      38       Strong
+Disgust      0.806      38       Strong
+Fearful      0.809      39       Strong
+Happy        0.640      39       Fair
+Neutral      0.667      19       Fair
+Sad          0.703      38       Good
+Surprised    0.857      39       Strong
+
+KEY INSIGHTS:
+• Strongest: Calm (F1: 0.861)
+• Weakest: Happy (F1: 0.640)
+• Class imbalance: Neutral has only 19 samples vs 39 for others
+
+CONFUSION PATTERNS (from your analysis):
+• Happy → Fearful: 17.9% error rate
+• Sad → Fearful: 18.4% error rate
+• Disgust → Angry: 13.2% error rate
+• Happy → Surprised: 10.3% error rate
+• Neutral → Calm: 21.1% error rate
+
+PERFORMance ASSESSMENT:
+• 78.12% accuracy is competitive with published RAVDESS results
+• Strong performance on Calm, Surprised, and Angry emotions
+• Reasonable macro F1-score across all classes
+• Happy emotion shows confusion with both Fearful and Surprised
+• Neutral class limited by small sample size
