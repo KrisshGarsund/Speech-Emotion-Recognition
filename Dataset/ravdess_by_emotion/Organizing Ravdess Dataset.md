@@ -47,4 +47,4 @@ for actor in os.listdir(base_dir):
         if not os.path.exists(dest_path):  # avoid SameFileError
             shutil.copy(src_path, dest_path)
 
-print("✅ RAVDESS organized successfully into:", output_dir)     # You will see this message in terminal once the process is done.
+print("RAVDESS organized successfully into:", output_dir)     # You will see this message in terminal once the process is done.
