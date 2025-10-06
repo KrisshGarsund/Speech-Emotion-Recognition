@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Speech Emotion Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header with Navigation -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-microphone-alt"></i>
+          <h1>Speech Emotion Recognition</h1>
+        </div>
+        <div class="user-menu">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Welcome, {{ username }}</span>
+          </div>
+          <a href="{{ url_for('logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    
+    
+
+    <main class="main-content">
+      <div class="dashboard-welcome">
+        <h2>Welcome to your Dashboard</h2>
+        <p>Choose how you'd like to analyze emotions using our AI-powered system</p>
+      </div>
+
+      <!-- Project Information Section -->
+      <div class="project-info-section">
+        <div class="info-card">
+          <div class="info-header">
+            <i class="fas fa-info-circle"></i>
+            <h3>About Speech Emotion Recognition</h3>
+          </div>
+          <div class="info-content">
+            <p>Our advanced AI system uses deep learning and MFCC (Mel-Frequency Cepstral Coefficients) feature extraction to analyze speech patterns and detect emotions in real-time. The system can identify 8 different emotions:</p>
+            <div class="emotions-grid">
+              <div class="emotion-item">
+                <i class="fas fa-smile"></i>
+                <span>Happy</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-frown"></i>
+                <span>Sad</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-angry"></i>
+                <span>Angry</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-surprise"></i>
+                <span>Fearful</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-grin-beam"></i>
+                <span>Surprised</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-grimace"></i>
+                <span>Disgust</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-smile-beam"></i>
+                <span>Calm</span>
+              </div>
+              <div class="emotion-item">
+                <i class="fas fa-meh"></i>
+                <span>Neutral</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Cards -->
+      <div class="features-grid">
+        <div class="feature-card" onclick="window.location.href='{{ url_for('upload_page') }}'">
+          <div class="feature-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+          </div>
+          <h3>Upload Audio</h3>
+          <p>Upload an audio file from your device for emotion analysis</p>
+          <div class="feature-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='{{ url_for('record_page') }}'">
+          <div class="feature-icon">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <h3>Record Audio</h3>
+          <p>Record your voice in real-time for instant emotion detection</p>
+          <div class="feature-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='{{ url_for('history_page') }}'">
+          <div class="feature-icon">
+            <i class="fas fa-history"></i>
+          </div>
+          <h3>Analysis History</h3>
+          <p>View your previous emotion analysis results and patterns</p>
+          <div class="feature-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='{{ url_for('about_page') }}'">
+          <div class="feature-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <h3>Learn More</h3>
+          <p>Discover how our AI technology works and get usage tips</p>
+          <div class="feature-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Recent Activity Section -->
+      <div class="activity-section">
+        <h3>Recent Activity</h3>
+        <div class="activity-list">
+          <div class="activity-item">
+            <i class="fas fa-upload"></i>
+            <div class="activity-content">
+              <span class="activity-title">Audio file uploaded</span>
+              <span class="activity-time">Just now</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <i class="fas fa-brain"></i>
+            <div class="activity-content">
+              <span class="activity-title">Emotion analysis completed</span>
+              <span class="activity-time">2 minutes ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>Secure & Private</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <span>Fast Analysis</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <span>AI-Powered</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

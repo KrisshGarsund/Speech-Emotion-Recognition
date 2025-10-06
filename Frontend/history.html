@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analysis History - Speech Emotion Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header with Navigation -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-microphone-alt"></i>
+          <h1>Analysis History</h1>
+        </div>
+        <div class="user-menu">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Welcome, {{ username }}</span>
+          </div>
+          <a href="{{ url_for('logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    
+    
+    <main class="main-content">
+      <div class="page-header">
+        <h2>Your Analysis History</h2>
+        <p>Track your emotion analysis results and patterns over time</p>
+      </div>
+
+      <!-- Statistics Overview -->
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="totalAnalyses">0</h3>
+              <p>Total Analyses</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-smile"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="mostCommonEmotion">-</h3>
+              <p>Most Common Emotion</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-percentage"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="averageConfidence">0%</h3>
+              <p>Average Confidence</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-calendar"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="lastAnalysis">-</h3>
+              <p>Last Analysis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter and Search -->
+      <div class="filter-section">
+        <div class="filter-controls">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search analyses...">
+          </div>
+          <div class="filter-dropdown">
+            <select id="emotionFilter">
+              <option value="">All Emotions</option>
+              <option value="happy">Happy</option>
+              <option value="sad">Sad</option>
+              <option value="angry">Angry</option>
+              <option value="fearful">Fearful</option>
+              <option value="surprised">Surprised</option>
+              <option value="disgust">Disgust</option>
+              <option value="calm">Calm</option>
+              <option value="neutral">Neutral</option>
+            </select>
+          </div>
+          <div class="sort-dropdown">
+            <select id="sortBy">
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="confidence-desc">Highest Confidence</option>
+              <option value="confidence-asc">Lowest Confidence</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- History List -->
+      <div class="history-section">
+        <div class="history-list" id="historyList">
+          <!-- Sample history items (in real app, these would come from database) -->
+          <div class="history-item">
+            <div class="history-icon">
+              <i class="fas fa-smile"></i>
+            </div>
+            <div class="history-content">
+              <div class="history-header">
+                <h4>Happy</h4>
+                <span class="history-time">2 minutes ago</span>
+              </div>
+              <div class="history-details">
+                <div class="confidence-bar">
+                  <span class="confidence-label">Confidence: 87%</span>
+                  <div class="confidence-track">
+                    <div class="confidence-fill" style="width: 87%"></div>
+                  </div>
+                </div>
+                <div class="history-meta">
+                  <span class="source">Recorded Audio</span>
+                  <span class="duration">3.2s</span>
+                </div>
+              </div>
+            </div>
+            <div class="history-actions">
+              <button class="action-btn" title="Play Audio">
+                <i class="fas fa-play"></i>
+              </button>
+              <button class="action-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="history-icon">
+              <i class="fas fa-frown"></i>
+            </div>
+            <div class="history-content">
+              <div class="history-header">
+                <h4>Sad</h4>
+                <span class="history-time">1 hour ago</span>
+              </div>
+              <div class="history-details">
+                <div class="confidence-bar">
+                  <span class="confidence-label">Confidence: 92%</span>
+                  <div class="confidence-track">
+                    <div class="confidence-fill" style="width: 92%"></div>
+                  </div>
+                </div>
+                <div class="history-meta">
+                  <span class="source">Uploaded File</span>
+                  <span class="duration">4.1s</span>
+                </div>
+              </div>
+            </div>
+            <div class="history-actions">
+              <button class="action-btn" title="Play Audio">
+                <i class="fas fa-play"></i>
+              </button>
+              <button class="action-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="history-icon">
+              <i class="fas fa-meh"></i>
+            </div>
+            <div class="history-content">
+              <div class="history-header">
+                <h4>Neutral</h4>
+                <span class="history-time">3 hours ago</span>
+              </div>
+              <div class="history-details">
+                <div class="confidence-bar">
+                  <span class="confidence-label">Confidence: 78%</span>
+                  <div class="confidence-track">
+                    <div class="confidence-fill" style="width: 78%"></div>
+                  </div>
+                </div>
+                <div class="history-meta">
+                  <span class="source">Recorded Audio</span>
+                  <span class="duration">2.8s</span>
+                </div>
+              </div>
+            </div>
+            <div class="history-actions">
+              <button class="action-btn" title="Play Audio">
+                <i class="fas fa-play"></i>
+              </button>
+              <button class="action-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="history-item">
+            <div class="history-icon">
+              <i class="fas fa-angry"></i>
+            </div>
+            <div class="history-content">
+              <div class="history-header">
+                <h4>Angry</h4>
+                <span class="history-time">1 day ago</span>
+              </div>
+              <div class="history-details">
+                <div class="confidence-bar">
+                  <span class="confidence-label">Confidence: 85%</span>
+                  <div class="confidence-track">
+                    <div class="confidence-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="history-meta">
+                  <span class="source">Uploaded File</span>
+                  <span class="duration">5.2s</span>
+                </div>
+              </div>
+            </div>
+            <div class="history-actions">
+              <button class="action-btn" title="Play Audio">
+                <i class="fas fa-play"></i>
+              </button>
+              <button class="action-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <i class="fas fa-history"></i>
+          <h3>No Analysis History</h3>
+          <p>You haven't performed any emotion analyses yet. Start by uploading an audio file or recording your voice!</p>
+          <div class="empty-actions">
+            <a href="{{ url_for('upload_page') }}" class="btn-primary">
+              <i class="fas fa-upload"></i>
+              Upload Audio
+            </a>
+            <a href="{{ url_for('record_page') }}" class="btn-secondary">
+              <i class="fas fa-microphone"></i>
+              Record Audio
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-section">
+        <div class="pagination">
+          <button class="pagination-btn" disabled>
+            <i class="fas fa-chevron-left"></i>
+            Previous
+          </button>
+          <div class="pagination-numbers">
+            <span class="pagination-number active">1</span>
+            <span class="pagination-number">2</span>
+            <span class="pagination-number">3</span>
+          </div>
+          <button class="pagination-btn">
+            Next
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>Secure & Private</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <span>Fast Analysis</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <span>AI-Powered</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='history.js') }}"></script>
+</body>
+</html>

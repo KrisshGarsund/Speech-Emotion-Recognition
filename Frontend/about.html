@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Project - Speech Emotion Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header with Navigation -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-microphone-alt"></i>
+          <h1>About Project</h1>
+        </div>
+        <div class="user-menu">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Welcome, {{ username }}</span>
+          </div>
+          <a href="{{ url_for('logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    
+    
+    <main class="main-content">
+      <div class="page-header">
+        <h2>About Speech Emotion Recognition</h2>
+        <p>Learn about our AI-powered emotion detection technology</p>
+      </div>
+
+      <!-- Project Overview -->
+      <div class="about-section">
+        <div class="about-card">
+          <div class="about-header">
+            <i class="fas fa-brain"></i>
+            <h3>Project Overview</h3>
+          </div>
+          <div class="about-content">
+            <p>This Speech Emotion Recognition system is an advanced AI-powered application that analyzes audio recordings to detect and classify emotional states in human speech. Built using cutting-edge machine learning techniques, the system can identify 8 different emotions with high accuracy.</p>
+            
+            <div class="tech-stack">
+              <h4>Technology Stack</h4>
+              <div class="tech-grid">
+                <div class="tech-item">
+                  <i class="fab fa-python"></i>
+                  <span>Python</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fas fa-brain"></i>
+                  <span>TensorFlow</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fas fa-chart-line"></i>
+                  <span>MFCC Features</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fab fa-html5"></i>
+                  <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fab fa-css3-alt"></i>
+                  <span>CSS3</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fab fa-js"></i>
+                  <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fas fa-database"></i>
+                  <span>SQLite</span>
+                </div>
+                <div class="tech-item">
+                  <i class="fab fa-flask"></i>
+                  <span>Flask</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works -->
+      <div class="how-it-works-section">
+        <h3>How It Works</h3>
+        <div class="steps-grid">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Audio Input</h4>
+              <p>Upload an audio file or record your voice directly in the browser</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Feature Extraction</h4>
+              <p>Extract MFCC (Mel-Frequency Cepstral Coefficients) features from the audio</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>AI Analysis</h4>
+              <p>Deep learning model analyzes the features to predict emotional state</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Results</h4>
+              <p>Display the detected emotion with confidence score and visual indicators</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Emotions Detected -->
+      <div class="emotions-section">
+        <h3>Detected Emotions</h3>
+        <div class="emotions-grid">
+          <div class="emotion-card">
+            <i class="fas fa-smile"></i>
+            <h4>Happy</h4>
+            <p>Positive emotions, joy, contentment, and satisfaction</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-frown"></i>
+            <h4>Sad</h4>
+            <p>Negative emotions, sorrow, grief, and melancholy</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-angry"></i>
+            <h4>Angry</h4>
+            <p>Intense negative emotions, rage, and frustration</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-surprise"></i>
+            <h4>Fearful</h4>
+            <p>Anxiety, fear, and nervousness in speech</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-grin-beam"></i>
+            <h4>Surprised</h4>
+            <p>Unexpected reactions, amazement, and astonishment</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-grimace"></i>
+            <h4>Disgust</h4>
+            <p>Revulsion, contempt, and strong negative reactions</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-smile-beam"></i>
+            <h4>Calm</h4>
+            <p>Peaceful, relaxed, and composed emotional state</p>
+          </div>
+          <div class="emotion-card">
+            <i class="fas fa-meh"></i>
+            <h4>Neutral</h4>
+            <p>No strong emotional indicators, balanced tone</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features-section">
+        <h3>Key Features</h3>
+        <div class="features-grid">
+          <div class="feature-item">
+            <i class="fas fa-microphone"></i>
+            <h4>Real-time Recording</h4>
+            <p>Record audio directly in your browser with visual feedback</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-upload"></i>
+            <h4>File Upload</h4>
+            <p>Upload audio files in various formats (WAV, MP3, M4A, OGG)</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-chart-line"></i>
+            <h4>Confidence Scores</h4>
+            <p>Get detailed confidence levels for each emotion prediction</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-history"></i>
+            <h4>Analysis History</h4>
+            <p>Track your previous analyses and emotional patterns</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <h4>Privacy First</h4>
+            <p>Your audio data is processed locally and not stored</p>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-mobile-alt"></i>
+            <h4>Mobile Friendly</h4>
+            <p>Responsive design that works on all devices</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Details -->
+      <div class="technical-section">
+        <h3>Technical Details</h3>
+        <div class="tech-details">
+          <div class="tech-detail-item">
+            <h4>Model Architecture</h4>
+            <p>Deep Neural Network with CNN+LSTM layers for temporal pattern recognition</p>
+          </div>
+          <div class="tech-detail-item">
+            <h4>Feature Extraction</h4>
+            <p>MFCC (Mel-Frequency Cepstral Coefficients) with 40 coefficients and 174 time frames</p>
+          </div>
+          <div class="tech-detail-item">
+            <h4>Training Data</h4>
+            <p>Trained on RAVDESS dataset with 8 emotion classes and balanced samples</p>
+          </div>
+          <div class="tech-detail-item">
+            <h4>Accuracy</h4>
+            <p>Achieves high accuracy in emotion classification with confidence scoring</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage Tips -->
+      <div class="tips-section">
+        <h3>Usage Tips</h3>
+        <div class="tips-grid">
+          <div class="tip-item">
+            <i class="fas fa-volume-up"></i>
+            <h4>Audio Quality</h4>
+            <p>Use clear, high-quality audio recordings for best results</p>
+          </div>
+          <div class="tip-item">
+            <i class="fas fa-clock"></i>
+            <h4>Duration</h4>
+            <p>Record for at least 3-5 seconds for accurate emotion detection</p>
+          </div>
+          <div class="tip-item">
+            <i class="fas fa-microphone"></i>
+            <h4>Environment</h4>
+            <p>Record in a quiet environment to minimize background noise</p>
+          </div>
+          <div class="tip-item">
+            <i class="fas fa-language"></i>
+            <p>Language</h4>
+            <p>Works best with English speech, though other languages may work</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>Secure & Private</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <span>Fast Analysis</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <span>AI-Powered</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

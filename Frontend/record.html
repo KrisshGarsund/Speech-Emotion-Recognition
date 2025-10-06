@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Record Audio - Speech Emotion Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header with Navigation -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-microphone-alt"></i>
+          <h1>Record Audio</h1>
+        </div>
+        <div class="user-menu">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Welcome, {{ username }}</span>
+          </div>
+          <a href="{{ url_for('logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    
+    
+    <main class="main-content">
+      <div class="page-header">
+        <h2>Record Audio for Emotion Analysis</h2>
+        <p>Record your voice directly in the browser for real-time emotion detection</p>
+      </div>
+
+      <!-- Recording Section -->
+      <div class="recording-section">
+        <div class="recording-card">
+          <div class="recording-header">
+            <i class="fas fa-microphone"></i>
+            <h3>Voice Recording</h3>
+          </div>
+          
+          <div class="recording-controls">
+            <div class="recording-status" id="recordingStatus">
+              <div class="status-indicator" id="statusIndicator"></div>
+              <span id="statusText">Ready to record</span>
+            </div>
+            
+            <div class="recording-timer" id="recordingTimer" style="display: none;">
+              <i class="fas fa-clock"></i>
+              <span id="timerDisplay">00:00</span>
+            </div>
+            
+            <div class="recording-buttons">
+              <button id="startRecording" class="record-btn start-btn">
+                <i class="fas fa-microphone"></i>
+                <span>Start Recording</span>
+              </button>
+              
+              <button id="stopRecording" class="record-btn stop-btn" disabled>
+                <i class="fas fa-stop"></i>
+                <span>Stop Recording</span>
+              </button>
+              
+              <button id="playRecording" class="record-btn play-btn" disabled>
+                <i class="fas fa-play"></i>
+                <span>Play Recording</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Audio Visualization -->
+          <div class="audio-visualization" id="audioVisualization" style="display: none;">
+            <canvas id="audioCanvas" width="400" height="100"></canvas>
+          </div>
+
+          <!-- Recording Playback -->
+          <div class="recording-playback" id="recordingPlayback" style="display: none;">
+            <h4>Recording Playback</h4>
+            <audio id="recordedAudio" controls>
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
+          <!-- Analysis Button -->
+          <button id="analyzeRecording" class="analyze-btn" disabled>
+            <i class="fas fa-brain"></i>
+            <span>Analyze Emotion</span>
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Recording Tips -->
+      <div class="tips-section">
+        <h3>Recording Tips</h3>
+        <div class="tips-grid">
+          <div class="tip-item">
+            <i class="fas fa-volume-up"></i>
+            <h4>Speak Clearly</h4>
+            <p>Speak at a normal volume and pace for best results</p>
+          </div>
+          <div class="tip-item">
+            <i class="fas fa-clock"></i>
+            <h4>Duration</h4>
+            <p>Record for at least 3-5 seconds for accurate analysis</p>
+          </div>
+          <div class="tip-item">
+            <i class="fas fa-shield-alt"></i>
+            <h4>Privacy</h4>
+            <p>Your recordings are processed locally and not stored</p>
+          </div>
+          <div class="tip-item">
+            <i class="fas fa-microphone"></i>
+            <h4>Environment</h4>
+            <p>Record in a quiet environment for better quality</p>
+          </div>
+        </div>
+      </div>
+
+      {% if prediction %}
+      <div class="result-section">
+        <div class="result-card">
+          <div class="result-header">
+            <i class="fas fa-chart-line"></i>
+            <h3>Detailed Analysis Results</h3>
+          </div>
+          <div class="result-content">
+            <div class="emotion-display">
+              <div class="emotion-icon">
+                {% if prediction.lower() == 'happy' %}
+                  <i class="fas fa-smile"></i>
+                {% elif prediction.lower() == 'sad' %}
+                  <i class="fas fa-frown"></i>
+                {% elif prediction.lower() == 'angry' %}
+                  <i class="fas fa-angry"></i>
+                {% elif prediction.lower() == 'fearful' %}
+                  <i class="fas fa-surprise"></i>
+                {% elif prediction.lower() == 'surprised' %}
+                  <i class="fas fa-grin-beam"></i>
+                {% elif prediction.lower() == 'disgust' %}
+                  <i class="fas fa-grimace"></i>
+                {% elif prediction.lower() == 'calm' %}
+                  <i class="fas fa-smile-beam"></i>
+                {% elif prediction.lower() == 'neutral' %}
+                  <i class="fas fa-meh"></i>
+                {% else %}
+                  <i class="fas fa-question"></i>
+                {% endif %}
+              </div>
+              <div class="emotion-details">
+                <h4 class="emotion-name">{{ prediction.title() }}</h4>
+                {% if confidence %}
+                <div class="confidence-bar">
+                  <div class="confidence-label">Confidence: {{ confidence }}%</div>
+                  <div class="confidence-track">
+                    <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            
+            {% if detailed_analysis %}
+            <div class="detailed-analysis">
+              <div class="analysis-text">
+                <h4><i class="fas fa-brain"></i> Analysis Summary</h4>
+                <p>{{ detailed_analysis.analysis_text }}</p>
+              </div>
+              
+              <div class="all-emotions">
+                <h4><i class="fas fa-list"></i> All Emotion Probabilities</h4>
+                <div class="emotion-probabilities">
+                  {% for emotion_data in detailed_analysis.all_emotions %}
+                  <div class="emotion-prob-item">
+                    <span class="emotion-name">{{ emotion_data.emotion.title() }}</span>
+                    <div class="prob-bar">
+                      <div class="prob-fill" style="width: {{ emotion_data.percentage }}%"></div>
+                    </div>
+                    <span class="prob-percentage">{{ emotion_data.percentage }}%</span>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+              {% if detailed_analysis.recommendations %}
+              <div class="recommendations">
+                <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+                <ul>
+                  {% for rec in detailed_analysis.recommendations %}
+                  <li>{{ rec }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <div class="error-section">
+        <div class="error-card">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h4>Error</h4>
+          <p>{{ error }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </main>
+
+    <footer class="footer">
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>Secure & Private</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <span>Fast Analysis</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <span>AI-Powered</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='record.js') }}"></script>
+</body>
+</html>

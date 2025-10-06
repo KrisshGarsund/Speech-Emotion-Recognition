@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Audio - Speech Emotion Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Header with Navigation -->
+    <header class="dashboard-header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-microphone-alt"></i>
+          <h1>Upload Audio</h1>
+        </div>
+        <div class="user-menu">
+          <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Welcome, {{ username }}</span>
+          </div>
+          <a href="{{ url_for('logout') }}" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    
+    
+
+    <main class="main-content">
+      <div class="page-header">
+        <h2>Upload Audio File</h2>
+        <p>Select an audio file from your device to analyze emotions</p>
+      </div>
+
+      <div class="upload-section">
+        <form id="uploadForm" action="/upload_predict" method="post" enctype="multipart/form-data">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-content">
+              <i class="fas fa-cloud-upload-alt upload-icon"></i>
+              <h3>Upload Audio File</h3>
+              <p>Drag and drop your audio file here, or click to browse</p>
+              <div class="file-info" id="fileInfo" style="display: none;">
+                <i class="fas fa-file-audio"></i>
+                <span id="fileName"></span>
+                <button type="button" class="remove-file" id="removeFile">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <input type="file" name="file" id="fileInput" accept="audio/*" required style="display: none;">
+            </div>
+          </div>
+          
+          <div class="audio-preview" id="audioPreview" style="display: none;">
+            <h4>Audio Preview</h4>
+            <audio controls id="audioPlayer">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
+          <button type="submit" class="analyze-btn" id="analyzeBtn" disabled>
+            <i class="fas fa-brain"></i>
+            <span>Analyze Emotion</span>
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+        </form>
+      </div>
+
+      {% if prediction %}
+      <div class="result-section">
+        <div class="result-card">
+          <div class="result-header">
+            <i class="fas fa-chart-line"></i>
+            <h3>Detailed Analysis Results</h3>
+          </div>
+          <div class="result-content">
+            <div class="emotion-display">
+              <div class="emotion-icon">
+                {% if prediction.lower() == 'happy' %}
+                  <i class="fas fa-smile"></i>
+                {% elif prediction.lower() == 'sad' %}
+                  <i class="fas fa-frown"></i>
+                {% elif prediction.lower() == 'angry' %}
+                  <i class="fas fa-angry"></i>
+                {% elif prediction.lower() == 'fearful' %}
+                  <i class="fas fa-surprise"></i>
+                {% elif prediction.lower() == 'surprised' %}
+                  <i class="fas fa-grin-beam"></i>
+                {% elif prediction.lower() == 'disgust' %}
+                  <i class="fas fa-grimace"></i>
+                {% elif prediction.lower() == 'calm' %}
+                  <i class="fas fa-smile-beam"></i>
+                {% elif prediction.lower() == 'neutral' %}
+                  <i class="fas fa-meh"></i>
+                {% else %}
+                  <i class="fas fa-question"></i>
+                {% endif %}
+              </div>
+              <div class="emotion-details">
+                <h4 class="emotion-name">{{ prediction.title() }}</h4>
+                {% if confidence %}
+                <div class="confidence-bar">
+                  <div class="confidence-label">Confidence: {{ confidence }}*100%</div>
+                  <div class="confidence-track">
+                    <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            
+            {% if detailed_analysis %}
+            <div class="detailed-analysis">
+              <div class="analysis-text">
+                <h4><i class="fas fa-brain"></i> Analysis Summary</h4>
+                <p>{{ detailed_analysis.analysis_text }}</p>
+              </div>
+              
+              <div class="all-emotions">
+                <h4><i class="fas fa-list"></i> All Emotion Probabilities</h4>
+                <div class="emotion-probabilities">
+                  {% for emotion_data in detailed_analysis.all_emotions %}
+                  <div class="emotion-prob-item">
+                    <span class="emotion-name">{{ emotion_data.emotion.title() }}</span>
+                    <div class="prob-bar">
+                      <div class="prob-fill" style="width: {{ emotion_data.percentage }}%"></div>
+                    </div>
+                    <span class="prob-percentage">{{ emotion_data.percentage }}%</span>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              
+              {% if detailed_analysis.recommendations %}
+              <div class="recommendations">
+                <h4><i class="fas fa-lightbulb"></i> Recommendations</h4>
+                <ul>
+                  {% for rec in detailed_analysis.recommendations %}
+                  <li>{{ rec }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <div class="error-section">
+        <div class="error-card">
+          <i class="fas fa-exclamation-triangle"></i>
+          <h4>Error</h4>
+          <p>{{ error }}</p>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Supported Formats -->
+      <div class="info-section">
+        <h3>Supported Audio Formats</h3>
+        <div class="formats-grid">
+          <div class="format-item">
+            <i class="fas fa-file-audio"></i>
+            <span>WAV</span>
+          </div>
+          <div class="format-item">
+            <i class="fas fa-file-audio"></i>
+            <span>MP3</span>
+          </div>
+          <div class="format-item">
+            <i class="fas fa-file-audio"></i>
+            <span>M4A</span>
+          </div>
+          <div class="format-item">
+            <i class="fas fa-file-audio"></i>
+            <span>OGG</span>
+          </div>
+        </div>
+        <p class="format-note">Maximum file size: 50MB. For best results, use clear audio recordings.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>Secure & Private</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-bolt"></i>
+          <span>Fast Analysis</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-brain"></i>
+          <span>AI-Powered</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
