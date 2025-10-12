@@ -1,4 +1,3 @@
-filename,predicted_emotion,confidence
 03-01-03-01-01-01-01.wav,Happy,0.9968
 03-01-03-01-01-01-02.wav,Happy,0.9999
 03-01-03-01-01-01-03.wav,Happy,1.0
