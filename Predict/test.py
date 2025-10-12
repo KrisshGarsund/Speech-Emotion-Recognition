@@ -1,9 +1,9 @@
-from audio_predictor import SpeechEmotionPredictor
+from Predict.audio_predictor import SpeechEmotionPredictor
 
 # Initialize with your H5 model
 predictor = SpeechEmotionPredictor(
-    "SER_model.h5",
-    "label_encoder.pkl"
+    "predict/SER_model.h5",
+    "predict/label_encoder.pkl"
 )
 
 # Predict on any .wav file
