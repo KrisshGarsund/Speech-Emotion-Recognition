@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "========================================"
+echo "AuraVoice - Speech Emotion Recognition"
+echo "========================================"
+echo ""
+echo "Starting the server..."
+echo ""
+echo "Frontend will be available at: http://localhost:5000"
+echo "Press Ctrl+C to stop the server"
+echo ""
+echo "========================================"
+
+python3 app.py
+
