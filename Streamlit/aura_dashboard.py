@@ -142,7 +142,7 @@ st.sidebar.markdown("<div class='auravoice-title'><span style='color:#c4f82a'>â—
 api_url = st.sidebar.text_input("Backend API", value=DEFAULT_API, help="Flask /predict endpoint")
 st.sidebar.divider()
 st.sidebar.markdown("**Input Source**")
-mode = st.sidebar.segmented_control("", options=["Upload", "Record"], default="Upload")
+mode = st.sidebar.segmented_control("Input Source", options=["Upload", "Record"], default="Upload", label_visibility="collapsed")
 duration = None
 if mode == "Record":
     duration = st.sidebar.slider("Recording duration (s)", 2, 10, 4)
