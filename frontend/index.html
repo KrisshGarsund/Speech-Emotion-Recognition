@@ -1,143 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Speech Emotion Recognition - AI-Powered Analysis</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeechSense - Speech Emotion Recognition</title>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="background">
-    <div class="background-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
-  </div>
+<body class="dark-mode">
+    <!-- Animated Background Glow -->
+    <div class="mouse-glow" id="mouseGlow"></div>
 
-  <div class="container">
-    <header class="header">
-      <div class="logo">
-        <i class="fas fa-microphone-alt"></i>
-        <h1>Speech Emotion Recognition</h1>
-      </div>
-      <p class="subtitle">AI-powered emotion analysis from audio files</p>
+    <!-- Header/Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-wave-square"></i>
+                <span>SpeechSense</span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#predict" class="nav-link">Predict</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+
+                <div class="nav-close" id="navClose">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <!-- Theme Toggle -->
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun theme-icon"></i>
+                    <div class="toggle-slider"></div>
+                    <i class="fas fa-moon theme-icon"></i>
+                </div>
+
+                <!-- Animated Scroll Emoji -->
+                <div class="scroll-emoji" id="scrollEmoji">
+                    <span class="emoji-icon" id="emojiIcon">😊</span>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <main class="main-content">
-      <div class="upload-section">
-        <form id="uploadForm" action="/predict" method="post" enctype="multipart/form-data">
-          <div class="upload-area" id="uploadArea">
-            <div class="upload-content">
-              <i class="fas fa-cloud-upload-alt upload-icon"></i>
-              <h3>Upload Audio File</h3>
-              <p>Drag and drop your audio file here, or click to browse</p>
-              <div class="file-info" id="fileInfo" style="display: none;">
-                <i class="fas fa-file-audio"></i>
-                <span id="fileName"></span>
-                <button type="button" class="remove-file" id="removeFile">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-              <input type="file" name="file" id="fileInput" accept="audio/*" required style="display: none;">
-            </div>
-          </div>
-          
-          <div class="audio-preview" id="audioPreview" style="display: none;">
-            <h4>Audio Preview</h4>
-            <audio controls id="audioPlayer">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-
-          <button type="submit" class="analyze-btn" id="analyzeBtn" disabled>
-            <i class="fas fa-brain"></i>
-            <span>Analyze Emotion</span>
-            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
-              <i class="fas fa-spinner fa-spin"></i>
-            </div>
-          </button>
-        </form>
-      </div>
-
-      {% if prediction %}
-      <div class="result-section">
-        <div class="result-card">
-          <div class="result-header">
-            <i class="fas fa-chart-line"></i>
-            <h3>Analysis Results</h3>
-          </div>
-          <div class="result-content">
-            <div class="emotion-display">
-              <div class="emotion-icon">
-                {% if prediction.lower() == 'happy' %}
-                  <i class="fas fa-smile"></i>
-                {% elif prediction.lower() == 'sad' %}
-                  <i class="fas fa-frown"></i>
-                {% elif prediction.lower() == 'angry' %}
-                  <i class="fas fa-angry"></i>
-                {% elif prediction.lower() == 'fearful' %}
-                  <i class="fas fa-surprise"></i>
-                {% elif prediction.lower() == 'surprised' %}
-                  <i class="fas fa-grin-beam"></i>
-                {% elif prediction.lower() == 'disgust' %}
-                  <i class="fas fa-grimace"></i>
-                {% elif prediction.lower() == 'calm' %}
-                  <i class="fas fa-smile-beam"></i>
-                {% elif prediction.lower() == 'neutral' %}
-                  <i class="fas fa-meh"></i>
-                {% else %}
-                  <i class="fas fa-question"></i>
-                {% endif %}
-              </div>
-              <div class="emotion-details">
-                <h4 class="emotion-name">{{ prediction.title() }}</h4>
-                {% if confidence %}
-                <div class="confidence-bar">
-                  <div class="confidence-label">Confidence: {{ confidence }}%</div>
-                  <div class="confidence-track">
-                    <div class="confidence-fill" style="width: {{ confidence }}%"></div>
-                  </div>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Home Page -->
+        <div id="homePage" class="page-container">
+        <!-- Hero Section -->
+        <section class="hero section" id="home">
+            <div class="hero-container container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Decode the <span class="accent-text">Emotion</span><br>
+                        Within the Voice
+                    </h1>
+                    <p class="hero-description">
+                        Advanced AI-powered speech analysis that recognizes and classifies emotions 
+                        in real-time. Upload audio or record live to discover the emotional tone.
+                    </p>
+                    <a href="#predict" class="btn btn-primary">
+                        <i class="fas fa-microphone"></i>
+                        Try It Now
+                    </a>
                 </div>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endif %}
 
-      {% if error %}
-      <div class="error-section">
-        <div class="error-card">
-          <i class="fas fa-exclamation-triangle"></i>
-          <h4>Error</h4>
-          <p>{{ error }}</p>
+                <div class="hero-emotions">
+                    <div class="emotion-card" data-emotion="happy">
+                        <i class="fas fa-smile-beam emotion-icon"></i>
+                        <span class="emotion-name">Happy</span>
+                    </div>
+                    <div class="emotion-card" data-emotion="sad">
+                        <i class="fas fa-sad-tear emotion-icon"></i>
+                        <span class="emotion-name">Sad</span>
+                    </div>
+                    <div class="emotion-card" data-emotion="angry">
+                        <i class="fas fa-angry emotion-icon"></i>
+                        <span class="emotion-name">Angry</span>
+                    </div>
+                    <div class="emotion-card" data-emotion="fearful">
+                        <i class="fas fa-flushed emotion-icon"></i>
+                        <span class="emotion-name">Fearful</span>
+                    </div>
+                    <div class="emotion-card" data-emotion="calm">
+                        <i class="fas fa-leaf emotion-icon"></i>
+                        <span class="emotion-name">Calm</span>
+                    </div>
+                    <div class="emotion-card" data-emotion="surprised">
+                        <i class="fas fa-surprise emotion-icon"></i>
+                        <span class="emotion-name">Surprised</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About/How It Works Section -->
+        <section class="about section" id="about">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">
+                    Powered by deep learning and advanced audio processing
+                </p>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3 class="about-title">Audio Input</h3>
+                        <p class="about-description">
+                            Upload pre-recorded audio files or record live speech directly 
+                            through your microphone with real-time visualization.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <h3 class="about-title">Feature Extraction</h3>
+                        <p class="about-description">
+                            Extracts 40 MFCC (Mel-Frequency Cepstral Coefficients) features 
+                            that capture the unique acoustic characteristics of emotions.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 class="about-title">CNN+LSTM Network</h3>
+                        <p class="about-description">
+                            Hybrid deep learning architecture combining Convolutional Neural 
+                            Networks for pattern recognition with LSTM for temporal modeling.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="about-title">Deep Learning Analysis</h3>
+                        <p class="about-description">
+                            Trained on 1,440 professional audio samples achieving 78% accuracy 
+                            through systematic hyperparameter optimization.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3 class="about-title">8 Emotions Detected</h3>
+                        <p class="about-description">
+                            Accurately classifies Happy, Sad, Angry, Fearful, Calm, 
+                            Surprised, Disgust, and Neutral emotions with confidence scores.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="about-title">Confidence Metrics</h3>
+                        <p class="about-description">
+                            Get detailed probability breakdowns for all emotions with 
+                            color-coded confidence levels and visual representations.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="about-title">Real-Time Processing</h3>
+                        <p class="about-description">
+                            Lightning-fast analysis delivers results in 1-3 seconds, 
+                            perfect for real-time applications and instant feedback.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="about-title">Real-World Applications</h3>
+                        <p class="about-description">
+                            Perfect for customer service analysis, mental health monitoring, 
+                            voice assistants, education, and human-computer interaction.
+                        </p>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="about-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="about-title">Privacy & Security</h3>
+                        <p class="about-description">
+                            Audio files are processed in real-time and immediately deleted. 
+                            No data is stored, ensuring complete privacy and security.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="contact-description">
+                        Have questions about SpeechSense or want to integrate emotion recognition 
+                        into your application? We'd love to hear from you.
+                    </p>
+                    <a href="mailto:harsh.15121102@gmail.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Send Email
+                    </a>
+                </div>
+            </div>
+        </section>
         </div>
-      </div>
-      {% endif %}
+        <!-- End Home Page -->
+
+        <!-- Predict Page -->
+        <div id="predictPage" class="page-container" style="display: none;">
+        <section class="predict section" id="predict">
+            <div class="container">
+                <h2 class="section-title">Make a Prediction</h2>
+                <p class="section-subtitle">
+                    Upload an audio file or record your voice to analyze the emotion
+                </p>
+
+                <!-- Predict Tabs -->
+                <div class="predict-tabs">
+                    <button class="predict-tab-btn active" data-tab="upload">
+                        <i class="fas fa-upload"></i>
+                        Upload Audio
+                    </button>
+                    <button class="predict-tab-btn" data-tab="record">
+                        <i class="fas fa-microphone"></i>
+                        Record Audio
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="predict-tab-contents">
+                    <!-- Upload Audio Tab -->
+                    <div class="predict-tab-content active" id="uploadTab">
+                        <div class="predict-card-single">
+                            <div class="dropzone" id="dropzone">
+                                <i class="fas fa-cloud-upload-alt dropzone-icon"></i>
+                                <p class="dropzone-text">
+                                    Click to browse or drag & drop<br>
+                                    <span class="dropzone-hint">Supports .wav, .mp3, .webm, .ogg, .m4a audio files</span>
+                                </p>
+                                <input type="file" id="audioFile" accept=".wav,.mp3,.webm,.ogg,.m4a,.flac,audio/*" hidden>
+                            </div>
+                            <div class="file-info" id="fileInfo"></div>
+                            <button class="btn btn-primary btn-block" id="uploadBtn" disabled>
+                                <i class="fas fa-brain"></i>
+                                Analyze Emotion
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Record Audio Tab -->
+                    <div class="predict-tab-content" id="recordTab">
+                        <div class="predict-card-single">
+                            <div class="audio-visualizer-container">
+                                <canvas id="audioVisualizer" width="400" height="100"></canvas>
+                            </div>
+                            <div class="record-controls">
+                                <button class="btn btn-primary" id="startRecordBtn">
+                                    <i class="fas fa-circle"></i>
+                                    Start Recording
+                                </button>
+                                <button class="btn btn-secondary" id="stopRecordBtn" disabled>
+                                    <i class="fas fa-stop"></i>
+                                    Stop Recording
+                                </button>
+                            </div>
+                            <audio id="recordedAudio" controls style="display: none; width: 100%; margin-top: 1rem;"></audio>
+                            <button class="btn btn-primary btn-block" id="analyzeRecordBtn" style="display: none; margin-top: 1rem;">
+                                <i class="fas fa-brain"></i>
+                                Analyze Recording
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>Analyzing audio...</p>
+                </div>
+
+                <!-- Prediction Result -->
+                <div class="prediction-result" id="predictionResult" style="display: none;">
+                    <div class="result-header">
+                        <i class="result-icon fas fa-smile-beam" id="resultIcon"></i>
+                        <div class="result-info">
+                            <h3 class="result-emotion" id="resultEmotion">Happy</h3>
+                            <p class="result-subtitle">Model Prediction</p>
+                        </div>
+                        <button class="btn btn-primary download-btn" id="downloadResultBtn">
+                            <i class="fas fa-download"></i>
+                            Download Results
+                        </button>
+                    </div>
+
+                    <div class="confidence-section">
+                        <div class="confidence-header">
+                            <span class="confidence-label">Confidence Level</span>
+                            <span class="confidence-value" id="confidenceValue">0%</span>
+                        </div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                        <p class="confidence-text" id="confidenceText">High Confidence</p>
+                    </div>
+
+                    <div class="probabilities-section">
+                        <button class="probabilities-toggle" id="probabilitiesToggle">
+                            <span>View All Emotion Probabilities</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="probabilities-content" id="probabilitiesContent" style="display: none;">
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+        <!-- End Predict Page -->
+
+        <!-- Download Modal -->
+        <div class="modal" id="downloadModal" style="display: none;">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Download Results</h3>
+                    <button class="modal-close" id="modalClose">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-description">Choose your preferred format to download the prediction results:</p>
+                    <div class="download-options">
+                        <button class="download-option-btn" id="downloadPDF">
+                            <i class="fas fa-file-pdf"></i>
+                            <div class="download-option-info">
+                                <h4>PDF Report</h4>
+                                <p>Styled report with colors and icons</p>
+                            </div>
+                        </button>
+                        <button class="download-option-btn" id="downloadCSV">
+                            <i class="fas fa-file-csv"></i>
+                            <div class="download-option-info">
+                                <h4>CSV Data</h4>
+                                <p>All emotions with probabilities</p>
+                            </div>
+                        </button>
+                        <button class="download-option-btn" id="downloadImage">
+                            <i class="fas fa-image"></i>
+                            <div class="download-option-info">
+                                <h4>Visual Card</h4>
+                                <p>Image with results and branding</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
-      <div class="features">
-        <div class="feature">
-          <i class="fas fa-shield-alt"></i>
-          <span>Secure & Private</span>
+        <div class="container">
+            <p class="footer-text">
+                &copy; 2025 SpeechSense. All rights reserved. Powered by Deep Learning.
+            </p>
         </div>
-        <div class="feature">
-          <i class="fas fa-bolt"></i>
-          <span>Fast Analysis</span>
-        </div>
-        <div class="feature">
-          <i class="fas fa-brain"></i>
-          <span>AI-Powered</span>
-        </div>
-      </div>
     </footer>
-  </div>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Third-party Libraries for Download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="script.js"></script>
 </body>
 </html>
+

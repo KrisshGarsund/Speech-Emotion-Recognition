@@ -1,4 +1,4 @@
-# AuraVoice Frontend
+# SpeechSense Frontend
 
 Modern, professional Speech Emotion Recognition web application built with pure HTML, CSS, and JavaScript.
 
@@ -308,5 +308,5 @@ For issues or questions, refer to the main project documentation or contact the 
 
 ---
 
-**Built with ❤️ for AuraVoice Speech Emotion Recognition**
+**Built with ❤️ for SpeechSense Speech Emotion Recognition**
 

@@ -1,5 +1,5 @@
 """
-AuraVoice - Speech Emotion Recognition Backend
+SpeechSense - Speech Emotion Recognition Backend
 Flask API for serving the frontend and handling emotion predictions
 """
 
@@ -324,7 +324,7 @@ def internal_error(error):
 
 if __name__ == '__main__':
     print("="*60)
-    print("AuraVoice - Speech Emotion Recognition Server")
+    print("SpeechSense - Speech Emotion Recognition Server")
     print("="*60)
     
     # Load model on startup

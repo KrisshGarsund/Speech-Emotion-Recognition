@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo AuraVoice - Speech Emotion Recognition
+echo SpeechSense - Speech Emotion Recognition
 echo ========================================
 echo.
 echo Starting the server...
