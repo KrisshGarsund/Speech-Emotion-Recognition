@@ -21,6 +21,11 @@ matplotlib==3.9.2
 seaborn==0.13.2
 jupyter==1.1.1
 
+# App UI / API client
+streamlit==1.38.0
+plotly==5.24.1
+requests==2.32.3
+sounddevice==0.4.6
+
 # Model saving/loading
->>>>>>> e852bce6a109d5e82125faad1a34803a402c153b
 joblib==1.4.2
