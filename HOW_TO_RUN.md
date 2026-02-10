@@ -1,4 +1,4 @@
-# 🚀 How to Run AuraVoice
+# 🚀 How to Run SpeechSense
 
 ## Option 1: Main Web Frontend (Recommended)
 
@@ -18,7 +18,7 @@ python app.py
 http://localhost:5000
 ```
 
-The modern AuraVoice frontend will load automatically!
+The modern SpeechSense frontend will load automatically!
 
 ---
 
@@ -60,7 +60,7 @@ http://localhost:8501
 - ✅ Waveform visualization
 - ✅ Session history tracking
 - ✅ CSV export
-- ✅ Branded AuraVoice design
+- ✅ Branded SpeechSense design
 
 ---
 
@@ -104,5 +104,5 @@ Ensure these files exist:
 - `GET /health` - Health check
 - `GET /emotions` - List of supported emotions
 
-Enjoy your AuraVoice Speech Emotion Recognition system! 🎤
+Enjoy your SpeechSense Speech Emotion Recognition system! 🎤
 

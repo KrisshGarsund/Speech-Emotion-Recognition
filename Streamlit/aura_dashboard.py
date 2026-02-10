@@ -14,7 +14,7 @@ import streamlit as st
 # Page config and global styles
 # ===============================
 st.set_page_config(
-    page_title="AuraVoice - Speech Emotion Recognition",
+    page_title="SpeechSense - Speech Emotion Recognition",
     page_icon="🎤",
     layout="wide"
 )
@@ -138,7 +138,7 @@ def visualize_waveform(file_path: str):
 # ===============================
 # Sidebar
 # ===============================
-st.sidebar.markdown("<div class='auravoice-title'><span style='color:#c4f82a'>◉</span> AuraVoice <span class='badge'>Streamlit</span></div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div class='auravoice-title'><span style='color:#c4f82a'>◉</span> SpeechSense <span class='badge'>Streamlit</span></div>", unsafe_allow_html=True)
 api_url = st.sidebar.text_input("Backend API", value=DEFAULT_API, help="Flask /predict endpoint")
 st.sidebar.divider()
 st.sidebar.markdown("**Input Source**")

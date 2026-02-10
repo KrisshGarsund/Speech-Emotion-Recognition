@@ -1,5 +1,5 @@
 ╔════════════════════════════════════════════════════════════════════════════╗
-║                   🎤 AURAVOICE - PROJECT STRUCTURE                          ║
+║                   🎤 SPEECHSENSE - PROJECT STRUCTURE                         ║
 ║              Speech Emotion Recognition with Modern Frontend                ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
